@@ -4,7 +4,6 @@ import { useState } from "react";
 import weatherIcon from "../assets/weather.png"
 
 const apiKey = import.meta.env.VITE_APP_API_KEY
-console.log(apiKey)
 
 const api = {
     key: apiKey,
@@ -18,8 +17,6 @@ const Weather = () => {
     const printVal = (input) => {
         setQuery(input)
     }
-
-    console.log(`${api.baseURL}weather?q=${query}&units=metric&appid=${apiKey}`)
 
     const search = (evt) => {
         if(evt.key === "Enter") {
