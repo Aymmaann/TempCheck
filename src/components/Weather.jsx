@@ -3,8 +3,11 @@ import './Weather.css'
 import { useState } from "react";
 import weatherIcon from "../assets/weather.png"
 
+const apiKey = import.meta.env.VITE_APP_API_KEY
+console.log(apiKey)
+
 const api = {
-    key: "fd20e1a9c395d1a378e78bc2579448f1",
+    key: apiKey,
     baseURL: "https://api.openweathermap.org/data/2.5/"
 }
 
@@ -15,6 +18,8 @@ const Weather = () => {
     const printVal = (input) => {
         setQuery(input)
     }
+
+    console.log(`${api.baseURL}weather?q=${query}&units=metric&appid=${apiKey}`)
 
     const search = (evt) => {
         if(evt.key === "Enter") {
