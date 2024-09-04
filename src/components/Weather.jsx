@@ -1,7 +1,7 @@
 import React from "react";
 import './Weather.css'
 import { useState } from "react";
-import weatherIcon from "../assets/weather-1.png"
+import icons from "./Icons";
 
 const apiKey = import.meta.env.VITE_APP_API_KEY
 
@@ -75,9 +75,9 @@ const Weather = () => {
                 {(typeof weather.main != "undefined")? (
                     <div className="location">
                         <div className="more-details">
-                            <span>Max temperature: {weather.main.temp_max}°C</span>
-                            <span>Min temperature: {weather.main.temp_min}°C</span>
-                            <span>Humidity: {weather.main.humidity}</span>
+                            <span><img src={icons.tempIcon} alt="" />Max temperature: {weather.main.temp_max}°C</span>
+                            <span><img src={icons.tempIcon} alt="" />Min temperature: {weather.main.temp_min}°C</span>
+                            <span><img src={icons.humidityIcon} alt="" />Humidity: {weather.main.humidity}%</span>
                         </div>
 
                         <div>
@@ -87,7 +87,7 @@ const Weather = () => {
                             </div>
 
                             <div className="box">
-                                <img src={weatherIcon} alt="" className="weather-img"/>
+                                <img src={icons.weatherIcon} alt="" className="weather-img"/>
                                 <h1>{Math.round(weather.main.temp)}°C</h1>
                                 <p>Feels like {Math.round(weather.main.feels_like)}°C</p>
                             </div>
@@ -98,16 +98,16 @@ const Weather = () => {
                         </div>
 
                         <div className="more-details">
-                            <span>Pressure: {weather.main.pressure}</span>
-                            <span>Sea level: {weather.main.sea_level}</span>
-                            <span>Wind Speed: {weather.wind.speed}</span>
-                            <span>Wind Degree: {weather.wind.deg}</span>
+                            <span><img src={icons.pressureIcon} alt="" />Pressure: {weather.main.pressure}hPa</span>
+                            <span><img src={icons.seaLevelIcon} alt="" />Sea level: {weather.main.sea_level}hPa</span>
+                            <span><img src={icons.windIcon} alt="" />Wind Speed: {weather.wind.speed}m/s</span>
+                            <span><img src={icons.windIcon} alt="" />Wind Degree: {weather.wind.deg}°</span>
                         </div>
                     </div>
                 ) : (
                     <div className="location">
                         <div className="empty">
-                            <img src={weatherIcon} alt="" />
+                            <img src={icons.weatherIcon} alt="" />
                             <p>Type a city name and press Enter to get the weather!</p>
                         </div>
                     </div>
