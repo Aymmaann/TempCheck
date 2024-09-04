@@ -1,7 +1,7 @@
 import React from "react";
 import './Weather.css'
 import { useState } from "react";
-import weatherIcon from "../assets/weather.png"
+import weatherIcon from "../assets/weather-1.png"
 
 const apiKey = import.meta.env.VITE_APP_API_KEY
 
@@ -28,12 +28,11 @@ const Weather = () => {
                 return response.json()
             })
             .then(data => {
-                console.log(data.main.temp)
                 setWeather(data)
-                console.log(weather)
                 setQuery('')
             })
         }
+        console.log(weather)
     }
 
     const dateBuilder = (Date) => {
@@ -75,18 +74,34 @@ const Weather = () => {
             <div className="location-box">
                 {(typeof weather.main != "undefined")? (
                     <div className="location">
-                        <div className="country-div">
-                            <h1 className="country">{weather.name}, {weather.sys.country}</h1>
-                            <p>{dateBuilder(new Date())}</p>
+                        <div className="more-details">
+                            <span>Max temperature: {weather.main.temp_max}°C</span>
+                            <span>Min temperature: {weather.main.temp_min}°C</span>
+                            <span>Humidity: {weather.main.humidity}</span>
                         </div>
 
-                        <div className="box">
-                            <img src={weatherIcon} alt="" className="weather-img"/>
-                            <h1>{Math.round(weather.main.temp)}°C</h1>
+                        <div>
+                            <div className="country-div">
+                                <h1 className="country">{weather.name}, {weather.sys.country}</h1>
+                                <p>{dateBuilder(new Date())}</p>
+                            </div>
+
+                            <div className="box">
+                                <img src={weatherIcon} alt="" className="weather-img"/>
+                                <h1>{Math.round(weather.main.temp)}°C</h1>
+                                <p>Feels like {Math.round(weather.main.feels_like)}°C</p>
+                            </div>
+
+                            <div className="description-div">
+                                <p>{weather.weather[0].main}</p>
+                            </div>
                         </div>
 
-                        <div className="description-div">
-                            <p>{weather.weather[0].main}</p>
+                        <div className="more-details">
+                            <span>Pressure: {weather.main.pressure}</span>
+                            <span>Sea level: {weather.main.sea_level}</span>
+                            <span>Wind Speed: {weather.wind.speed}</span>
+                            <span>Wind Degree: {weather.wind.deg}</span>
                         </div>
                     </div>
                 ) : (
